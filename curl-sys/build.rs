@@ -477,7 +477,9 @@ fn try_vcpkg() -> bool {
 
 fn try_pkg_config() -> bool {
     let mut cfg = pkg_config::Config::new();
+    cfg.print_system_libs(false);
     cfg.cargo_metadata(false);
+    
     let lib = match cfg.probe("libcurl") {
         Ok(lib) => lib,
         Err(e) => {
